@@ -18,7 +18,6 @@ class Controller:
 
     def fillDD(self):
         nercList = self._model.listNerc
-
         for n in nercList:
             self._view._ddNerc.options.append(ft.dropdown.Option(n))
         self._view.update_page()

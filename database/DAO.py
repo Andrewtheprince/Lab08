@@ -14,13 +14,11 @@ class DAO():
         result = []
 
         cursor = conn.cursor(dictionary=True)
-        query = """ ADD YOUR QUERY """
-
+        query = """SELECT n.id, n.value
+                   FROM nerc n"""
         cursor.execute(query)
-
         for row in cursor:
             result.append(Nerc(row["id"], row["value"]))
-
         cursor.close()
         conn.close()
         return result
@@ -28,14 +26,12 @@ class DAO():
     @staticmethod
     def getAllEvents(nerc):
         conn = DBConnect.get_connection()
-
         result = []
-
         cursor = conn.cursor(dictionary=True)
-        query = """ ADD YOUR QUERY """
-
+        query = """SELECT p.id, p.event_type_id, p.tag_id, p.area_id, p.nerc_id, p.responsible_id, p.customers_affected, p.date_event_began, p.date_event_finished, p.demand_loss
+                   FROM poweroutages p
+                   WHERE p.nerc_id = %s"""
         cursor.execute(query, (nerc.id,))
-
         for row in cursor:
             result.append(
                 Event(row["id"], row["event_type_id"],
