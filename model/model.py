@@ -11,10 +11,13 @@ class Model:
 
 
     def worstCase(self, nerc, maxY, maxH):
-        # TO FILL
-        pass
+        self.loadEvents(nerc)
+        #mancano queste due funzioni
+        #deve restituire una lista di eventi
+        return self._listEvents
+
     def ricorsione(self, parziale, maxY, maxH, pos):
-        # TO FILL
+        # Mancano queste due funzioni
         pass
 
     def loadEvents(self, nerc):

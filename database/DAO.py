@@ -28,10 +28,10 @@ class DAO():
         conn = DBConnect.get_connection()
         result = []
         cursor = conn.cursor(dictionary=True)
-        query = """SELECT p.id, p.event_type_id, p.tag_id, p.area_id, p.nerc_id, p.responsible_id, p.customers_affected, p.date_event_began, p.date_event_finished, p.demand_loss
+        query = """SELECT *
                    FROM poweroutages p
                    WHERE p.nerc_id = %s"""
-        cursor.execute(query, (nerc.id,))
+        cursor.execute(query, (nerc,))
         for row in cursor:
             result.append(
                 Event(row["id"], row["event_type_id"],
